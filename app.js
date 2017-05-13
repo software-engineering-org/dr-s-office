@@ -38,14 +38,11 @@ app.use(bodyParser.urlencoded({extended: true})); //false = simple   true for co
 app.use(cookieParser());
 
 
-
 app.use(express.static(path.join(__dirname, 'public')));  //this is served as /stylesheets/style.css
 
 
-
 app.use('/', indexRouter);
-app.use('/usersRouter', usersRouter);
-
+app.use('/users', usersRouter);
 
 
 
