@@ -6,6 +6,11 @@ var app = require('../app');
 var debug = require('debug')('droffice:server');
 var http = require('http');
 
+var privateKey  ='data';
+var certificate = 'tata';
+
+//var credentials = {key: privateKey, cert: certificate};
+
 /**
  * Get port from environment and store in Express.
  */

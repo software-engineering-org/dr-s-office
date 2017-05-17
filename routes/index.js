@@ -6,7 +6,7 @@ var router = express.Router();
 function retRouter(){
     router.route('/').
     get(function (req, res, next) {
-        res.render('index',
+        res.render('login',
             {
             title: 'Express2222',
             data: [
