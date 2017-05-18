@@ -26,6 +26,27 @@ function isLoggedIn(req, res, next) {
     res.redirect('/');
 }
 
+arr = [1,2,3,4,56];
+
+arr=arr.splice(1,arr.length);
+console.log(arr)
+
+arr=arr.splice(1,arr.length);
+console.log(arr)
+
+arr=arr.splice(1,arr.length);
+console.log(arr)
+
+arr=arr.splice(1,arr.length);
+console.log(arr)
+
+arr=arr.splice(1,arr.length);
+if (arr.length == 0)
+    console.log(arr);
+
+
+
+
 
 module.exports.delAuthSession=delAuthSession;
 module.exports.isLoggedIn=isLoggedIn;

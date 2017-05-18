@@ -73,10 +73,43 @@ module.exports.restructureVisitJSON = function (json) {
 var currentVisitId = null;
 var leftToReducePriorty = 3;
 var priority = 'A';
-module.exports.getNextToEnter = function (watingQueueJson) {
-    for (var i in watingQueueJson)
-        console.log(watingQueueJson[i])
 
+module.exports.getNextToEnter = function (waitingQueueJson) {
+    var classes={};
+    classes['A']=[],classes['B']=[],classes['C']=[];
+
+    for (var i in waitingQueueJson)
+        classes[waitingQueueJson[i].V_Priority].push(waitingQueueJson[i].V_Index)
+
+    classes['A'].sort(), classes['B'].sort(),classes['C'].sort();
+
+
+    if(leftToReducePriorty==0) {
+        priority = String.fromCharCode((priority.charCodeAt(0)) + 1);
+        if(priority =='D')  priority ='A';
+
+        leftToReducePriorty ='A'.charCodeAt(0)-priority.charCodeAt(0)+3;
+    }
+
+
+    var index=classes[priority][0];
+
+    var tempPriority=priority;
+    while (index==undefined && (String.fromCharCode((tempPriority.charCodeAt(0)) + 1)).charCodeAt(0) < 'D'.charCodeAt(0)){
+        tempPriority=(String.fromCharCode((tempPriority.charCodeAt(0)) + 1));
+        index=classes[tempPriority][0];
+    }
+
+    for (var i in waitingQueueJson)
+        if(waitingQueueJson[i].V_Index == index) {
+            index = waitingQueueJson[i];
+            break;
+        }
+
+    leftToReducePriorty--;
+    if (index!= undefined)
+        currentVisitId = index.V_VisitID;
+    return index;
 };
 
 module.exports.getNextToLeave = function (json) {
