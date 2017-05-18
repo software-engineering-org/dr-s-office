@@ -1,9 +1,9 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var logger = require('morgan'); // log every request to the console
+var cookieParser = require('cookie-parser'); // read cookies (needed for auth)
+var bodyParser = require('body-parser'); // get information from html forms
 
 
 var cookieSession = require('cookie-session');
@@ -17,7 +17,7 @@ app.use(logger('dev')); // log every request to the console
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-app.use(cookieParser('my secret here'));// read cookies (needed for auth)
+app.use(cookieParser('iHateSoftwareEngineering'));// read cookies (needed for auth)
 
 app.use(cookieSession({
     name: 'session',

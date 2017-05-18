@@ -1,6 +1,11 @@
 /**
  * Created by Mohammed Alaa Elkomy on 5/15/2017.
  */
+
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
+
+
 function newAuthSession(un,pw){
 
 
@@ -29,20 +34,12 @@ function isLoggedIn(req, res, next) {
 arr = [1,2,3,4,56];
 
 arr=arr.splice(1,arr.length);
+
 console.log(arr)
 
-arr=arr.splice(1,arr.length);
-console.log(arr)
 
-arr=arr.splice(1,arr.length);
-console.log(arr)
 
-arr=arr.splice(1,arr.length);
-console.log(arr)
 
-arr=arr.splice(1,arr.length);
-if (arr.length == 0)
-    console.log(arr);
 
 
 

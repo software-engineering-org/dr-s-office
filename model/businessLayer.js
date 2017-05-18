@@ -7,9 +7,18 @@ var sql = require('./dataAccessLayer').sql;
 var GetDate = require('../helpers/helpers').GetDate;
 var FormatDate = require('../helpers/helpers').FormatDate;
 var restructureVisitJSON = require('../helpers/helpers').restructureVisitJSON;
+var unique = require('../helpers/helpers').unique;
+
+
 var getNextToEnter = require('../helpers/helpers').getNextToEnter;
 var getNextToLeave = require('../helpers/helpers').getNextToLeave;
-var unique = require('../helpers/helpers').unique;
+var currentVisitId = require('../helpers/helpers').currentVisitId;
+var queueTopay = require('../helpers/helpers').queueTopay;
+var getCurrentVisitId= require('../helpers/helpers').getCurrentVisitId;
+var getQueueTopay= require('../helpers/helpers').getQueueTopay;
+var setCurrentVisitId= require('../helpers/helpers').setCurrentVisitId;
+var setQueueTopay= require('../helpers/helpers').setQueueTopay;
+
 
 function loginTry(username, password, callback) {
     executeProcedure(paramObj = {
@@ -23,7 +32,8 @@ function loginTry(username, password, callback) {
 }
 
 
-function registerTry(Name, City, Zip_code, Birthdate, Phone, E_mail, Image, AdmissionDate, SSN, UserName, Password, Ispatient,CardNumber,ExpDate,Security, callback) {
+
+function registerTry(Name, City, Zip_code, Birthdate, Phone, E_mail, Image, AdmissionDate, SSN, UserName, Password, Ispatient, callback) {
     var proc = (Ispatient ? 'Add_Patient' : 'Add_Rep');
     executeProcedure(paramObj = {
             proc: proc, params: [
@@ -31,23 +41,21 @@ function registerTry(Name, City, Zip_code, Birthdate, Phone, E_mail, Image, Admi
                 {paramName: 'City', paramType: sql.NVarChar(25), paraVal: City},
                 {paramName: 'Zip_code', paramType: sql.Int, paraVal: Zip_code},
                 {paramName: 'Birthdate', paramType: sql.Date, paraVal: Birthdate},
-                {paramName: 'Phone', paramType: sql.NVarChar(20), paraVal: Phone},
+                {paramName: 'Phone', paramType: sql.BigInt, paraVal: Phone},
                 {paramName: 'E_mail', paramType: sql.NVarChar(50), paraVal: E_mail},
                 {paramName: 'Image', paramType: sql.NVarChar(25), paraVal: Image},
                 {paramName: 'AdmissionDate', paramType: sql.NVarChar(25), paraVal: AdmissionDate},
                 {paramName: 'SSN', paramType: sql.NVarChar(25), paraVal: SSN},
                 {paramName: 'UserName', paramType: sql.NVarChar(25), paraVal: UserName},
-                {paramName: 'Password', paramType: sql.NVarChar(25), paraVal: Password},
-
-                {paramName: 'CardNumber', paramType: sql.Int, paraVal: CardNumber},
-                {paramName: 'ExpDate', paramType: sql.Date, paraVal: ExpDate},
-                {paramName: 'Security', paramType: sql.Int, paraVal: Security}
-
+                {paramName: 'Password', paramType: sql.NVarChar(25), paraVal: Password}
             ]
         }
         , callback
     );
 }
+
+
+
 
 
 function getPersonDataByAccID(ID, callback) {
@@ -60,14 +68,7 @@ function getPersonDataByAccID(ID, callback) {
     );
 }
 
-getPersonDataByAccID('1745',
-    function (err,result){
-        if(err)
-            console.error(err);
-        else
-            console.log (result.recordset[0]);
-    }
-);
+
 
 function getHistoryOfpatient(PatientID, callback) {
     executeProcedure(paramObj = {
@@ -148,7 +149,7 @@ function unscheduleVisit(PatientID, callback) {
 }
 
 
-function getVisitsByDate_ToBeSchd(Date, callback) {
+function getQueueOfVisits(Date, callback) {
     executeProcedure(paramObj = {
             proc: 'getVisitsBydate', params: [
                 {paramName: 'Date', paramType: sql.Date, paraVal: Date}
@@ -414,6 +415,9 @@ function search_treat_item_byName(Name, callback) {
 }
 
 
+
+
+
 //login form
 module.exports.loginTry = loginTry;
 module.exports.registerTry = registerTry;
@@ -426,7 +430,7 @@ module.exports.scheduleVisit = scheduleVisit;
 module.exports.unscheduleVisit = unscheduleVisit;
 
 //doctor form
-module.exports.getVisitsByDate_ToBeSchd = getVisitsByDate_ToBeSchd;
+module.exports.getQueueOfVisits = getQueueOfVisits;
 module.exports.checkUpFullData = checkUpFullData;
 
 module.exports.Add_BillingItem = Add_BillingItem;

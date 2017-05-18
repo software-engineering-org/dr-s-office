@@ -19,20 +19,21 @@ loginTry('moh', '12',
     }
 );
 
-//[ 1, 1, 1, 1, 1 ]
-registerTry('dd', 'rr', 21345, '2008-8-8', '223324466', 'asd@dd.com', 'image', '2008-8-8', 2163, 'do1dofrt1', '123', true
-    ,10100,'2008-9-8',150,
+registerTry('dd','rr',21345,'2008-8-8',999999111,'asd@dd.com','image','2008-8-8',2163,'moh','123', true,
     function (err, result) {
-        if (err)
+        //check repeated number  then repeated name
+
+        if (err && err.toString().indexOf('PA_PersonID') !=-1)
+            console.error('repeated username');
+        else if (err)
             console.error(err);
         else
-            console.log(result.rowsAffected[0]);
+            console.log(result.rowsAffected[0]); //only 1 if successful
+        //undefined for repeated number
     }
 );
 
-
-
-getPersonDataByAccID('23',
+getPersonDataByAccID('42',
     function (err,result){
         if(err)
             console.error(err);
@@ -58,24 +59,13 @@ unscheduleVisit(21, function (err,result){
 });
 
 
-getHistoryOfpatient(6, function (err,result){ //result is json array of visits
+getHistoryOfpatient(21, function (err,result){ //result is json array of visits
     if(err)
         console.error(err);
     else
         console.log (JSON.stringify(result, null, 1)); // Indented with tab
 });
 
-//getAvailibleIndecesByDate
-getVisitsByDate_ToBeSchd('2008-11-11', function (err, result) {
-    if (err)
-        console.error(err);
-    else {
-        console.log(result.recordset);
-        var lucky ;
-        lucky = getNextToEnter(result.recordset);
-        console.log(lucky); //maybe null
-    }
-});
 
 
 Add_Billing(100,53, function (err,result){ //result is json array of visits
@@ -209,11 +199,115 @@ searchPatientbyPersonName('d', function (err,result){ //result is json array of 
 });
 
 
-checkUpFullData(44,1000,'d44','s44','t44',[1,2],[1,2],[2,3],[1,2], function (err){ //result is json array of visits
-    if(err)
+
+
+//getAvailibleIndecesByDate
+getQueueOfVisits('2008-11-11', function (err, result) { //click next doctor
+    if (err)
         console.error(err);
-    else
-        console.log ("done");
+    else {
+        console.log(result.recordset);
+        var lucky ;
+        lucky = getNextToEnter(result.recordset); //maybe null
+        console.log(lucky);
+
+        console.log(getCurrentVisitId());
+
+        //click post
+        checkUpFullData(getCurrentVisitId(),1000,'d44','s44','t44',[1,2],[1,2],[2,3],[1,2], function (err){ //result is json array of visits
+            if(err)
+                console.error(err);
+            else{
+                console.log ("done"); //post done
+
+
+                getQueueTopay().push (getCurrentVisitId());
+                setCurrentVisitId(null);
+
+                //click next receptionist
+                console.log (getQueueTopay());
+
+                console.log(getNextToLeave());
+
+                console.log (getQueueTopay())
+            }
+
+        });
+
+
+
+
+        /*
+         console.log(lucky);
+         for (i in result.recordset){
+         if (result.recordset[i] == lucky)
+         { result.recordset.splice(i, 1);
+         break;
+         }
+         }
+
+         lucky = getNextToEnter(result.recordset); //maybe null
+
+         console.log(lucky);
+         for (i in result.recordset){
+         if (result.recordset[i] == lucky)
+         { result.recordset.splice(i, 1);
+         break;
+         }
+         }
+
+         lucky = getNextToEnter(result.recordset); //maybe null
+
+         console.log(lucky);
+         for (i in result.recordset){
+         if (result.recordset[i] == lucky)
+         { result.recordset.splice(i, 1);
+         break;
+         }
+         }
+
+         lucky = getNextToEnter(result.recordset); //maybe null
+
+         console.log(lucky);
+         for (i in result.recordset){
+         if (result.recordset[i] == lucky)
+         { result.recordset.splice(i, 1);
+         break;
+         }
+         }
+
+         lucky = getNextToEnter(result.recordset); //maybe null
+
+         console.log(lucky);
+         for (i in result.recordset){
+         if (result.recordset[i] == lucky)
+         { result.recordset.splice(i, 1);
+         break;
+         }
+         }
+
+
+         lucky = getNextToEnter(result.recordset); //maybe null
+
+         console.log(lucky);
+         for (i in result.recordset){
+         if (result.recordset[i] == lucky)
+         { result.recordset.splice(i, 1);
+         break;
+         }
+         }
+
+         lucky = getNextToEnter(result.recordset); //maybe null
+
+         console.log(lucky);
+         for (i in result.recordset){
+         if (result.recordset[i] == lucky)
+         { result.recordset.splice(i, 1);
+         break;
+         }
+         }*/
+
+    }
 });
 
 

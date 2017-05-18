@@ -69,7 +69,6 @@ module.exports.restructureVisitJSON = function (json) {
     }
 };
 
-
 var currentVisitId = null;
 var leftToReducePriorty = 3;
 var priority = 'A';
@@ -91,7 +90,6 @@ module.exports.getNextToEnter = function (waitingQueueJson) {
         leftToReducePriorty ='A'.charCodeAt(0)-priority.charCodeAt(0)+3;
     }
 
-
     var index=classes[priority][0];
 
     var tempPriority=priority;
@@ -109,13 +107,25 @@ module.exports.getNextToEnter = function (waitingQueueJson) {
     leftToReducePriorty--;
     if (index!= undefined)
         currentVisitId = index.V_VisitID;
+    else
+        currentVisitId = null;
+
+    //console.log ("SYSTEM ",currentVisitId);
     return index;
 };
 
-module.exports.getNextToLeave = function (json) {
-
-
+var queueTopay = [];
+module.exports.getNextToLeave = function () {
+    var  ret =queueTopay[0];
+    queueTopay=queueTopay.splice(1,queueTopay.length);
+    return ret;
 };
 
 
 module.exports.unique =unique;
+
+module.exports.getCurrentVisitId=function(){return currentVisitId};
+module.exports.getQueueTopay=function(){return queueTopay};
+
+module.exports.setCurrentVisitId=function(pcurrentVisitId){ currentVisitId=pcurrentVisitId;};
+module.exports.setQueueTopay=function(pqueueTopay){ queueTopay=pqueueTopay;};
