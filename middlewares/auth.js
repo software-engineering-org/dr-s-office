@@ -9,7 +9,10 @@
 var login = require('../model/businessLayer').loginTry;
 var encrypt = require('../helpers/helpers').encrypt;
 
+function reset(){} //proto
+
 function updateAuthSession(req, un, pw, accId, type) {
+    module.exports.reset();
     req.session.un = un;
     req.session.pw = pw;
     req.session.accId = accId;
@@ -24,6 +27,7 @@ function isAuthenticated(un, pw, callback) {
     login(un, pw, callback);
 }
 
+
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
     var un = (req.session.un ? req.session.un : encrypt(req.body.username));
@@ -35,18 +39,24 @@ function isLoggedIn(req, res, next) {
             if (err == null && result.rowsAffected[0]) {
                 // if user is authenticated in the session, carry on
                 updateAuthSession(req, un, pw, result.recordset[0].P_AccountID, result.recordset[0].A_AccountType);
-
+                console.log(1);
                 if (req.originalUrl == '/signin' || req.originalUrl == '/signup')  //no infinite redirection
                     res.redirect('/');
+                else
+                    //if(req.originalUrl !='/')
+                    return next();
 
-                else return next();
             } else {
 
                 // if they aren't redirect them
                 if (req.originalUrl == '/signin' || req.originalUrl == '/signup') //no infinite redirection
+
+
                     return next();
 
-                else  res.redirect('/signin');
+                else
+
+                    res.redirect('/signin');
 
             }
         });
@@ -56,3 +66,4 @@ function isLoggedIn(req, res, next) {
 module.exports.delAuthSession = delAuthSession;
 module.exports.isLoggedIn = isLoggedIn;
 module.exports.updateAuthSession = updateAuthSession;
+module.exports.reset = reset;

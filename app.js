@@ -5,11 +5,29 @@ var logger = require('morgan'); // log every request to the console
 var cookieParser = require('cookie-parser'); // read cookies (needed for auth)
 var bodyParser = require('body-parser'); // get information from html forms
 
+const fileUpload = require('express-fileupload');
+
 var cookieSession = require('cookie-session');
+/*
+var multer = require('multer');
 
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null,path.join(__dirname, 'uploads'))
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
 
+var upload = multer({ storage: storage })
+*/
 
 var app = express();
+
+
+// default options
+app.use(fileUpload());
 
 
 // set up our express application
@@ -48,7 +66,7 @@ var auth = require("./middlewares/auth");
 // controllers ======================================================================
 var indexRouter = require('./controllers/index')(auth);
 var loginRouter = require('./controllers/signIn')(auth);
-var signUpRouter = require('./controllers/signUp')(auth);
+var signUpRouter = require('./controllers/signUp')(auth/*,upload*/);
 var signOutRouter = require('./controllers/signOut')(auth);
 
 app.use('/', indexRouter);

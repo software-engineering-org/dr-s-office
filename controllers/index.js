@@ -13,10 +13,10 @@ function retRouter(auth) {
     //doctor has 2 forms of GET and 1 form of POST
     //receptionist has 1 form of GET
 
-    router.get('/', /*auth.isLoggedIn,*/
+    router.get('/', auth.isLoggedIn,
         function (req, res) {
             res.render("recep");
-            res.send("hello"+ req.session.type);
+           // res.send("hello"+ req.session.type);
         });
 
 

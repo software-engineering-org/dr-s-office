@@ -1,122 +1,154 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon.png">
     <link rel="icon" type="image/png" href="images/favicon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
     <title>Sign in</title>
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
 
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
 
     <!-- CSS Files -->
-    <link href="stylesheets/bootstrap.min.css" rel="stylesheet" />
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet"/>
     <link href="stylesheets/material-kit.css" rel="stylesheet"/>
 
 </head>
 
 <body class="signup-page">
-	<nav class="navbar navbar-transparent navbar-absolute">
-    	<div class="container">
-        	<!-- Brand and toggle get grouped for better mobile display -->
-        	<div class="navbar-header">
-        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-            		<span class="sr-only">Toggle navigation</span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-		            <span class="icon-bar"></span>
-        		</button>
-        		<a class="navbar-brand" href="index.html">Doctor's Office</a>
-        	</div>
+<nav class="navbar navbar-transparent navbar-absolute">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Doctor's Office</a>
+        </div>
 
-        	<div class="collapse navbar-collapse" id="navigation-example">
-        		<ul class="nav navbar-nav navbar-right">
-    				<li>
-						<a href="../signup">
-							<i class="material-icons">unarchive</i> Sign Up
-						</a>
-    				</li>
-        		</ul>
-        	</div>
-    	</div>
-    </nav>
+        <div class="collapse navbar-collapse" id="navigation-example">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="../signup">
+                        <i class="material-icons">unarchive</i> Sign Up
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    <div class="wrapper">
-		<div class="header header-filter" style="background-image: url('/images/login.png'); background-size: cover; background-position: top left;">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-						<div class="card card-signup">
-							<form class="form" method="post" action="">
-								<div class="header header-primary text-center">
-									<h4>SIGN IN
-										<i class="material-icons">world</i>
-									</h4>
-								</div>
-								<div class="content">
-									<div class="input-group">
+
+<div class="wrapper">
+    <div class="header header-filter"
+         style="background-image: url('/images/login.png'); background-size: cover; background-position: top left;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                    <div class="card card-signup">
+
+                        <form method="post" action="/signin">
+
+                            <% if(username != "placeholder") { %>
+
+                            <div class="alert alert-danger">
+                                <div class="container-fluid">
+                                    <div class="alert-icon">
+                                        <i class="material-icons">error_outline</i>
+                                    </div>
+
+                                    <b>Error: </b>Invalid username or password
+                                </div>
+                            </div>
+
+                            <% } else { %>
+
+                            <div class="header header-primary text-center">
+                                <h4>SIGN IN
+                                    <i class="material-icons">world</i>
+                                </h4>
+
+                            </div>
+                            <% } %>
+
+                            <div class="content">
+
+
+                                <div class="input-group">
 										<span class="input-group-addon">
 											<i class="material-icons">face</i>
 										</span>
-										<input id="P_USERNAME" type="text" class="form-control" placeholder="User Name" required>
-									</div>
+                                    <input name="username" type="text" class="form-control" placeholder="User Name"
+                                            <% if(username != "placeholder") { %>
+                                           value="<%= username %>"
+                                            <% } %>
+                                           required>
+                                </div>
 
-									<div class="input-group">
+                                <div class="input-group">
 										<span class="input-group-addon">
 											<i class="material-icons">lock_outline</i>
 										</span>
-										<input id="P_PASSWORD" type="password" placeholder="Password" class="form-control" required/>
-									</div>
-									<div class="checkbox">
-										<label>
-											<input id="L_P_CHECK" type="checkbox" name="optionsCheckboxes">
-											Remember Me
-										</label>
-									</div>
-								</div>
-								<div class="footer text-center">
-									<button  class="btn btn-simple btn-primary btn-lg"
-										   data-container="body"> LOGIN</button>
-									<!--<a href="" class="btn btn-simple btn-primary btn-lg">LOGIN</a>-->
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
+                                    <input name="password" type="password" placeholder="Password" class="form-control"
+                                            <% if( password != "placeholder") { %>
+                                           value="<%= password %>"
+                                            <% } %>
+                                           required/>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="check" type="checkbox" name="optionsCheckboxes">
+                                        Remember Me
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="footer text-center">
 
-			<footer class="footer">
-		        <div class="container">
-		            <nav class="pull-left">
-						<ul>
-							<li>
-								<a href="/">
-									Doctor's Office
-								</a>
-							</li>
-							<li>
-								<a href="#">
-								   About Us
-								</a>
-							</li>
+                                <input type="submit" class="btn btn-simple btn-primary btn-lg" value="LOGIN" required/>
+                                <!--<a href="" class="btn btn-simple btn-primary btn-lg">LOGIN</a>-->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-						</ul>
-		            </nav>
-		            <div class="copyright pull-right">
-		                &copy; 2017	, made with <i class="fa fa-heart heart"></i> by <a href="#" target="_blank">KOKO Team</a>
-		            </div>
-		        </div>
-		    </footer>
+        <footer class="footer">
+            <div class="container">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="/">
+                                Doctor's Office
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                About Us
+                            </a>
+                        </li>
 
-		</div>
+                    </ul>
+                </nav>
+                <div class="copyright pull-right">
+                    &copy; 2017 , made with <i class="fa fa-heart heart"></i> by <a href="#" target="_blank">KOKO
+                        Team</a>
+                </div>
+            </div>
+        </footer>
 
     </div>
+
+</div>
 
 
 </body>
@@ -134,5 +166,7 @@
 <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
 <script src="javascript/material-kit.js" type="text/javascript"></script>
 
+<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+<script src="javascript/main_login.js" type="text/javascript"></script>
 </html>
 
