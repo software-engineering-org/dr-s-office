@@ -59,7 +59,10 @@
 	                            <img src="images/christian.jpg" alt="Circle Image" class="img-circle img-responsive img-raised">
 	                        </div>
 	                        <div class="name">
-	                            <h3 class="title">Patient Name</h3>
+	                            <h3 class="title"><%= data1.P_Name %></h3>
+								<h4 class="title"><%= data1.P_city %></h4>
+                                <h4 class="title"><%= data1.P_Phone %></h4>
+                                <h4 class="title"><%= data1.P_Email %></h4>
 	                        </div>
 	                    </div>
 	                </div>
@@ -101,51 +104,69 @@
 				                    <div class="tab-content gallery">
 										<div class="tab-pane active" id="Symptoms">
 				                            <div class="row">
-												<div class="col-md-6">
-													<p>Info Are Displayed here</p>
+                                                <h4 class="title"><%= data2[0].S_Description %></h4>
+												<div class="col-md-6" id="Symptoms1">
+                                                    <% for(var i=0; i < data2[0].SymItems.length; i++) { %>
+													<p><%=data2[0].SymItems[i].SI_Name%></p>
 													<p></p>
-
+                                                    <% } %>
 												</div>
-												<div class="col-md-6">
-													<p>Info Are Displayed here</p>
-													<p></p>
-
+												<div class="col-md-6" id="Symptoms2">
+                                                    <% for(var i=0; i < data2[0].SymItems.length; i++) { %>
+                                                    <p><%=data2[0].SymItems[i].SI_Description%></p>
+                                                    <p></p>
+                                                    <% } %>
 												</div>
 				                            </div>
 				                        </div>
 				                        <div class="tab-pane text-center" id="Diagnose">
 											<div class="row">
-												<div class="col-md-6">
-													<p>Info are displayed here</p>
-													<p></p>
+                                                <h4 class="title"><%= data2[0].D_Description %></h4>
+												<div class="col-md-6" id="Diagnose1">
+                                                    <% for(var i=0; i < data2[0].DiagItems.length; i++) { %>
+                                                    <p><%=data2[0].DiagItems[i].DI_Name%></p>
+                                                    <p></p>
+                                                    <% } %>
 												</div>
-												<div class="col-md-6">
-													<p>Info are displayed here</p>
-													<p></p>
+												<div class="col-md-6" id="Diagnose2">
+                                                    <% for(var i=0; i < data2[0].DiagItems.length; i++) { %>
+                                                    <p><%=data2[0].DiagItems[i].DI_Description%></p>
+                                                    <p></p>
+                                                    <% } %>
 												</div>
 											</div>
 				                        </div>
 										<div class="tab-pane text-center" id="Treatment">
 											<div class="row">
-												<div class="col-md-6">
-													<p>Info are displayed here</p>
-													<p></p>
+                                                <h4 class="title"><%= data2[0].T_Description %></h4>
+												<div class="col-md-6" id="Treatment1">
+                                                    <% for(var i=0; i < data2[0].TreatItems.length; i++) { %>
+                                                    <p><%=data2[0].TreatItems[i].TI_Name%></p>
+                                                    <p></p>
+                                                    <% } %>
 												</div>
-												<div class="col-md-6">
-													<p>Info are displayed here</p>
-													<p></p>
+												<div class="col-md-6" id="Treatment2">
+                                                    <% for(var i=0; i < data2[0].TreatItems.length; i++) { %>
+                                                    <p><%=data2[0].TreatItems[i].TI_Description%></p>
+                                                    <p></p>
+                                                    <% } %>
 												</div>
 											</div>
 				                        </div>
 										<div class="tab-pane text-center" id="Charge">
 											<div class="row">
-												<div class="col-md-6">
-													<p>Info are displayed here</p>
-													<p></p>
+                                                <h4 class="title"><%= data2[0].B_Cost %></h4>
+												<div class="col-md-6" id="Charge1">
+                                                    <% for(var i=0; i < data2[0].BillItems.length; i++) { %>
+                                                    <p><%=data2[0].BillItems[i].BI_Name%></p>
+                                                    <p></p>
+                                                    <% } %>
 												</div>
-												<div class="col-md-6">
-													<p>Info are displayed here</p>
-													<p></p>
+												<div class="col-md-6" id="Charge2">
+                                                    <% for(var i=0; i < data2[0].BillItems.length; i++) { %>
+                                                    <p><%=data2[0].BillItems[i].BI_UnitCost%></p>
+                                                    <p></p>
+                                                    <% } %>
 												</div>
 											</div>
 										</div>
