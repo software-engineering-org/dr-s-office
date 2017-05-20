@@ -10,6 +10,7 @@ var restructureVisitJSON = require('../helpers/helpers').restructureVisitJSON;
 var unique = require('../helpers/helpers').unique;
 
 
+
 var getNextToEnter = require('../helpers/helpers').getNextToEnter;
 var getNextToLeave = require('../helpers/helpers').getNextToLeave;
 var currentVisitId = require('../helpers/helpers').currentVisitId;
@@ -23,8 +24,8 @@ var setQueueTopay= require('../helpers/helpers').setQueueTopay;
 function loginTry(username, password, callback) {
     executeProcedure(paramObj = {
             proc: 'SP_LOGIN', params: [
-                {paramName: 'id', paramType: sql.NVarChar(25), paraVal: username},
-                {paramName: 'PWD', paramType: sql.NVarChar(25), paraVal: password}
+                {paramName: 'id', paramType: sql.NVarChar(65), paraVal: username},
+                {paramName: 'PWD', paramType: sql.NVarChar(65), paraVal: password}
             ]
         }
         , callback
@@ -46,8 +47,8 @@ function registerTry(Name, City, Zip_code, Birthdate, Phone, E_mail, Image, Admi
                 {paramName: 'Image', paramType: sql.NVarChar(25), paraVal: Image},
                 {paramName: 'AdmissionDate', paramType: sql.NVarChar(25), paraVal: AdmissionDate},
                 {paramName: 'SSN', paramType: sql.NVarChar(25), paraVal: SSN},
-                {paramName: 'UserName', paramType: sql.NVarChar(25), paraVal: UserName},
-                {paramName: 'Password', paramType: sql.NVarChar(25), paraVal: Password}
+                {paramName: 'UserName', paramType: sql.NVarChar(65), paraVal: UserName},
+                {paramName: 'Password', paramType: sql.NVarChar(65), paraVal: Password}
             ]
         }
         , callback
@@ -413,9 +414,6 @@ function search_treat_item_byName(Name, callback) {
         , callback
     );
 }
-
-
-
 
 
 //login form

@@ -2,6 +2,8 @@
  * Created by Mohammed Alaa Elkomy on 5/16/2017.
  */
 
+var bcrypt   = require('bcrypt-nodejs');
+
 function unique(that) {
     var n = {}, r = [];
     for (var i = 0; i < that.length; i++) {
@@ -121,6 +123,16 @@ module.exports.getNextToLeave = function () {
     return ret;
 };
 
+/*key =bcrypt.genSaltSync(8);*/
+// encryptionkey= '$2a$08$HIPW8XO2.nU9BHPL7m9HyO'
+module.exports.encrypt = function (string) {
+    return bcrypt.hashSync(string, '$2a$08$HIPW8XO2.nU9BHPL7m9HyO', null);
+};
+
+module.exports.compareEncryption = function (string1,string2) {
+    return bcrypt.compareSync(string1,string2);
+    // "WQEAشFSF",  module.exports.encrypt("WQEAشFSF")
+};
 
 module.exports.unique =unique;
 

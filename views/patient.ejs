@@ -1,46 +1,203 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Patient Panel</title>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon.png">
+	<link rel="icon" type="image/png" href="images/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
-    <script src="/javascripts/bootstrap.min.js"></script>
-    <script src="/javascripts/jquery-3.2.1.min.js"></script>
-    <script src="/javascripts/jquery-3.2.1.js"></script>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+	<title>Patient profile</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+	<!-- CSS Files -->
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet" />
+    <link href="stylesheets/material-kit.css" rel="stylesheet"/>
 
 </head>
-<body>
-    <h1>Doctor's Clinic</h1>
-    <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Patient Basic Information</h3>
-            </div>
-            <div class="panel-body">
-                <div ><p >Name</p>   </div>
-                <img src="" alt=""> <!--pic of the patient -->
-            </div>
-            <br><br><br>
-            <div class="panel-heading">
-                <h3 class="panel-title">Medical Information</h3>
-            </div>
-            <div class="panel-body">
-                <p>Last visit</p>
-                <p>Diagnose</p>
-                <p>Treatment</p>
-                <p>Symptoms</p>
-                <p class="cls">Bill</p>
-                <p class="cls">Total cost</p>
-            </div>
-            <br><br>
-            <a href="login.ejs"><button type="button" class=" btn-warning btn-lg bton ">Logout</button></a>
+
+<body class="profile-page">
+	<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
+    	<div class="container">
+        	<!-- Brand and toggle get grouped for better mobile display -->
+        	<div class="navbar-header">
+        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+            		<span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+        		</button>
+        		<a class="navbar-brand" href="../index.html">Doctor's Clinic</a>
+        	</div>
+
+        	<div class="collapse navbar-collapse" id="navigation-example">
+        		<ul class="nav navbar-nav navbar-right">
+    				<li>
+						<a href="/signout">
+							 Logout
+						</a>
+    				</li>
+        		</ul>
+        	</div>
+    	</div>
+    </nav>
+
+    <div class="wrapper">
+		<div class="header header-filter" style="background-image: url('images/login.png');"></div>
+
+		<div class="main main-raised">
+			<div class="profile-content">
+	            <div class="container">
+	                <div class="row">
+	                    <div class="profile">
+	                        <div class="avatar">
+	                            <img src="images/christian.jpg" alt="Circle Image" class="img-circle img-responsive img-raised">
+	                        </div>
+	                        <div class="name">
+	                            <h3 class="title">Patient Name</h3>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="description text-center">
+                        <p>Last Visit Date:</p>
+	                </div>
+
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3">
+							<div class="profile-tabs">
+			                    <div class="nav-align-center">
+									<ul class="nav nav-pills" role="tablist">
+										<li class="active">
+											<a href="#Symptoms" role="tab" data-toggle="tab">
+												<i class="material-icons">list</i>
+												Symptoms
+											</a>
+										</li>
+										<li>
+				                            <a href="#Diagnose" role="tab" data-toggle="tab">
+												<i class="material-icons">list</i>
+												Diagnose
+				                            </a>
+				                        </li>
+				                        <li>
+				                            <a href="#Treatment" role="tab" data-toggle="tab">
+												<i class="material-icons">dashboard</i>
+												Treatment
+				                            </a>
+				                        </li>
+										<li>
+											<a href="#Charge" role="tab" data-toggle="tab">
+												<i class="material-icons">attach_money</i>
+												Charging
+											</a>
+										</li>
+				                    </ul>
+
+				                    <div class="tab-content gallery">
+										<div class="tab-pane active" id="Symptoms">
+				                            <div class="row">
+												<div class="col-md-6">
+													<p>Info Are Displayed here</p>
+													<p></p>
+
+												</div>
+												<div class="col-md-6">
+													<p>Info Are Displayed here</p>
+													<p></p>
+
+												</div>
+				                            </div>
+				                        </div>
+				                        <div class="tab-pane text-center" id="Diagnose">
+											<div class="row">
+												<div class="col-md-6">
+													<p>Info are displayed here</p>
+													<p></p>
+												</div>
+												<div class="col-md-6">
+													<p>Info are displayed here</p>
+													<p></p>
+												</div>
+											</div>
+				                        </div>
+										<div class="tab-pane text-center" id="Treatment">
+											<div class="row">
+												<div class="col-md-6">
+													<p>Info are displayed here</p>
+													<p></p>
+												</div>
+												<div class="col-md-6">
+													<p>Info are displayed here</p>
+													<p></p>
+												</div>
+											</div>
+				                        </div>
+										<div class="tab-pane text-center" id="Charge">
+											<div class="row">
+												<div class="col-md-6">
+													<p>Info are displayed here</p>
+													<p></p>
+												</div>
+												<div class="col-md-6">
+													<p>Info are displayed here</p>
+													<p></p>
+												</div>
+											</div>
+										</div>
+
+				                    </div>
+								</div>
+							</div>
+							<!-- End Profile Tabs -->
+						</div>
+	                </div>
+
+	            </div>
+	        </div>
+		</div>
 
     </div>
+    <footer class="footer">
+        <div class="container">
+            <nav class="pull-left">
+				<ul>
+					<li>
+						<a href="../index.html">
+							Doctor's Clinic
+						</a>
+					</li>
+					<li>
+						<a href="#">
+						   About Us
+						</a>
+					</li>
+				</ul>
+            </nav>
+            <div class="copyright pull-right">
+                &copy; 2017, made with <i class="fa fa-heart heart"></i> by KOKO Team
+            </div>
+        </div>
+    </footer>
+
 
 </body>
+	<!--   Core JS Files   -->
+	<script src="javascript/jquery.min.js" type="text/javascript"></script>
+	<script src="javascript/bootstrap.min.js" type="text/javascript"></script>
+	<script src="javascript/material.min.js"></script>
+
+	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+	<script src="javascript/nouislider.min.js" type="text/javascript"></script>
+
+	<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
+	<script src="javascript/bootstrap-datepicker.js" type="text/javascript"></script>
+
+	<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+	<script src="javascript/material-kit.js" type="text/javascript"></script>
+
 </html>
